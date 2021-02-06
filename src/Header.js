@@ -1,15 +1,20 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { auth, provider } from "./firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser, logout } from "./features/userSlice";
-import { avatar } from "react-bootstrap";
+
 import "./Header.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+} from "react-router-dom";
 
 function Header() {
-
   // user signin using firebase
   const signIn = () => {
     auth.signInWithPopup(provider).catch((err) => alert(err.message));
@@ -22,7 +27,15 @@ function Header() {
         <Navbar.Brand href="#home">Globlex.com</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto"></Nav>
+          <Nav className="mr-auto text-white">
+            {user ? (
+              <Link to="/result" style={{ textDecoration: "none" }}>
+                <span className="result">Results</span>
+              </Link>
+            ) : (
+              <h1></h1>
+            )}
+          </Nav>
           <Nav>
             {user ? (
               <div className="header__imageDiv">

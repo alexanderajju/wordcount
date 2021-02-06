@@ -57,10 +57,13 @@ function Home() {
           className="sm-2"
           placeholder="Enter your website URL Eg.https://www.growth.cx"
         />
-
-        <button className="insights" onClick={sendMessage}>
-          Get Insights
-        </button>
+        {user ? (
+          <button disabled={!user} className="insights" onClick={sendMessage}>
+            Get Insights
+          </button>
+        ) : (
+          <h1>Login</h1>
+        )}
       </form>
     </div>
   );
