@@ -1,0 +1,15 @@
+.header__image {
+  height: 50px;
+  border-radius: 115%;
+  object-fit: scale-down;
+  width: 50px;
+}
+.header__imageDiv {
+  display: flex;
+}
+.header__imageDiv > h5 {
+  font-size: 15px;
+  color: white;
+  align-self: center;
+  margin: 10px;
+}

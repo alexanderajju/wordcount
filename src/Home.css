@@ -1,0 +1,26 @@
+input.sm-2 {
+  flex: 1;
+  outline: none;
+  border-color: rgb(92, 25, 248);
+}
+form {
+  display: flex;
+  width: 60%;
+  margin-left: 182px;
+  position: absolute;
+  bottom: 70px;
+}
+.word__count {
+  display: flex;
+  margin-top: 25px;
+}
+img {
+  object-fit: contain;
+  height: 350px;
+  width: 300px;
+}
+.h1-text {
+  font-size: 4rem;
+  padding: 50px;
+  font-weight: 700;
+}

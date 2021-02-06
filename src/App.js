@@ -1,57 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Home from "./Home";
+import Header from "./Header";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import Result from "./Result";
+import { useEffect } from "react";
+import axios from "./axios";
+import { selectUser, setUser, logout } from "./features/userSlice";
+import { auth } from "./firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+
+  // user session handling
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        axios.post("/user", authUser).then((response) => {
+          if (response) {
+            dispatch(
+              setUser({
+                uid: response.data.providerId,
+                photo: response.data.photoURL,
+                email: response.data.email,
+                displayName: response.data.displayName,
+                _id: response.data._id,
+              })
+            );
+          }
+        });
+      } else {
+        dispatch(logout);
+      }
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    // Routes
+    <BrowserRouter>
+      <div className="app">
+        <Switch>
+          <Route path="/result">
+            <Header />
+            <Result />
+          </Route>
+          <Route path="/">
+            <Header />
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
