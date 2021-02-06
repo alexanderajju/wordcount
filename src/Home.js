@@ -1,13 +1,12 @@
 import React from "react";
 import "./Home.css";
-import { useEffect } from "react";
 import { selectUser, setUser, logout } from "./features/userSlice";
 import { selectCount, setCount } from "./features/counterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { auth } from "./firebase";
 import { useState } from "react";
 import axios from "./axios";
+import office from "./office.png";
 
 function Home() {
   const dispatch = useDispatch();
@@ -35,37 +34,45 @@ function Home() {
   };
 
   return (
-    <div className="home">
-      <div className="word__count col-md-12">
-        <div className="col-md-6">
-          <h1 className="h1-text">
+    <div>
+      <div className="office">
+        <div className="work">
+          <span className="unable">
             Unable to check
-            <br /> your website <br /> word count
-          </h1>
+            <br />
+            your webpage
+            <br />
+            word count?
+          </span>
+          <span className="guide">
+            No worries!<span style={{ color: "#0d8bfc" }}> Globex</span> will
+            guide you!
+          </span>
         </div>
-        <div>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSN2UZ8N0cj2B3mnq0w30Ham4PW8z6oGKCgwg&usqp=CAU" />
+        <div className="image">
+          <img src={office} alt="" />
         </div>
       </div>
-
-      <form action="">
-        <input
-          value={url}
-          name="url"
-          onChange={(e) => setUrl(e.target.value)}
-          type="text"
-          className="sm-2"
-          placeholder="Enter your website URL Eg.https://www.growth.cx"
-        />
-        {user ? (
-          <button disabled={!user} className="insights" onClick={sendMessage}>
-            Get Insights
+      <div class="input">
+        <span class="input__text">
+          Check the last time when you checked the webpage word count.
+        </span>
+        <div class="input__group">
+          <input
+            class="input__box"
+            value={url}
+            name="url"
+            onChange={(e) => setUrl(e.target.value)}
+            placeholder="Enter your website URL Eg.https://www.growth.cx"
+            type="text"
+          />
+          <button onClick={sendMessage} class="input__button">
+            Get insights
           </button>
-        ) : (
-          <h1>Login</h1>
-        )}
-      </form>
+        </div>
+      </div>
     </div>
+
   );
 }
 

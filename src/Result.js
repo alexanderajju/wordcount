@@ -10,6 +10,8 @@ import { useState } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const $ = require("jquery");
 $.DataTable = require("datatables.net");
@@ -19,8 +21,8 @@ function Result() {
   const user = useSelector(selectUser);
   const [data, setdata] = useState([]);
   const [liked, setLiked] = useState([0]);
-
-
+  const [redirect, setRedirect] = useState(false);
+  const history = useHistory();
 
   // firing useeffect to keep wordcount
   useEffect(() => {
@@ -49,8 +51,7 @@ function Result() {
         },
       })
       .then((response) => {
-        alert("Deleted");
-        window.location.reload();
+        history.go(0);
       });
   };
 
@@ -65,7 +66,7 @@ function Result() {
         },
       })
       .then((response) => {
-        window.location.reload();
+        history.go(0);
       });
   };
   const setunfav = (id) => {
@@ -79,7 +80,9 @@ function Result() {
         },
       })
       .then((response) => {
-        window.location.reload();
+        if (response) {
+          history.go(0);
+        }
       });
   };
 

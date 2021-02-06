@@ -2,12 +2,13 @@ import firebase from "firebase";
 
 // firebaseconfig
 const firebaseConfig = {
-  apiKey: "AIzaSyAAaxF8xIV13UM58Vkah6NAT8N0ODjJz44",
-  authDomain: "wordcountapp-19077.firebaseapp.com",
-  projectId: "wordcountapp-19077",
-  storageBucket: "wordcountapp-19077.appspot.com",
-  messagingSenderId: "1032474186002",
-  appId: "1:1032474186002:web:0a3744ed046bff856f23cb",
+  apiKey: "AIzaSyCYlPfM4Pj15_frE_lsTFj-QDECJMppUq0",
+  authDomain: "wordcount-85307.firebaseapp.com",
+  projectId: "wordcount-85307",
+  storageBucket: "wordcount-85307.appspot.com",
+  messagingSenderId: "2841069410",
+  appId: "1:2841069410:web:3de87e8fae3bcbc2a0ce3b",
+  measurementId: "G-2RET1TST67",
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
