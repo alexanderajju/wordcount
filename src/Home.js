@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "./axios";
 import office from "./office.png";
+import { auth, provider } from "./firebase";
 
 function Home() {
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ function Home() {
       await history.push("result");
     });
   };
-
+  const signIn = () => {
+    auth.signInWithPopup(provider).catch((err) => alert(err.message));
+  };
   return (
     <div>
       <div className="office">
@@ -66,13 +69,18 @@ function Home() {
             placeholder="Enter your website URL Eg.https://www.growth.cx"
             type="text"
           />
-          <button onClick={sendMessage} class="input__button">
-            Get insights
-          </button>
+          {user ? (
+            <button onClick={sendMessage} class="input__button">
+              Get insights
+            </button>
+          ) : (
+            <button onClick={signIn} class="input__button">
+              Get insights
+            </button>
+          )}
         </div>
       </div>
     </div>
-
   );
 }
 

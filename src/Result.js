@@ -24,6 +24,10 @@ function Result() {
   const [redirect, setRedirect] = useState(false);
   const history = useHistory();
 
+  $(document).ready(function () {
+    $("#myTable").DataTable();
+  });
+
   // firing useeffect to keep wordcount
   useEffect(() => {
     if (user) {
@@ -110,7 +114,8 @@ function Result() {
       )}
 
       <div>
-        <Table id="table_id" striped>
+    
+        <Table id="myTable" striped>
           <thead>
             <tr>
               <th>URL</th>
