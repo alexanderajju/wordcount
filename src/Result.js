@@ -24,10 +24,6 @@ function Result() {
   const [redirect, setRedirect] = useState(false);
   const history = useHistory();
 
-  $(document).ready(function () {
-    $("#myTable").DataTable();
-  });
-
   // firing useeffect to keep wordcount
   useEffect(() => {
     if (user) {
@@ -44,6 +40,12 @@ function Result() {
         });
     }
   }, [user]);
+  console.log(data.length);
+  if (data.length != 0) {
+    $(document).ready(function () {
+      $("#tabledata").DataTable();
+    });
+  }
 
   const deleteItem = (id) => {
     // delete request to back end
@@ -114,8 +116,7 @@ function Result() {
       )}
 
       <div>
-    
-        <Table id="myTable" striped>
+        <Table id="tabledata" striped>
           <thead>
             <tr>
               <th>URL</th>

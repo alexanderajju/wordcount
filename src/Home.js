@@ -75,7 +75,7 @@ function Home() {
             </button>
           ) : (
             <button onClick={signIn} class="input__button">
-              Get insights
+              Get signIn
             </button>
           )}
         </div>
